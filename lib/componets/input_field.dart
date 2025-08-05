@@ -5,6 +5,7 @@ class InputField extends StatelessWidget {
   final String label;
   final String hintText;
   final bool obscureText;
+  final IconData? prefixIcon;
 
   const InputField({
     super.key,
@@ -12,6 +13,7 @@ class InputField extends StatelessWidget {
     required this.label,
     required this.hintText,
     this.obscureText = false,
+    this.prefixIcon,
   });
 
   @override
@@ -21,9 +23,14 @@ class InputField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         labelText: label,
-        hintText: hintText
+        hintText: hintText,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
       ),
     );
   }
-  
 }
+  
+

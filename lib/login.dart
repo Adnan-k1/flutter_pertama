@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pertama/Home.dart';
 import 'package:flutter_pertama/register.dart';
+import 'componets/widget_button.dart';
+import 'componets/input_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -65,44 +67,25 @@ class LoginPagetState extends State<LoginPage> {
               style: TextStyle(fontSize: 14, color: Colors.grey[700]),
             ),
             SizedBox(height: 25),
-            TextField(
+            InputField(
               controller: emailController,
-              decoration: InputDecoration(
-                labelText: "Email",
-                hintText: "Masukkan email",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                prefixIcon: Icon(Icons.email),
-              ),
+              label: "Email",
+              hintText: "Masukkan email",
+              prefixIcon: Icons.email,
             ),
+
             SizedBox(height: 15),
-            TextField(
+            InputField(
               controller: passwordController,
+              label: "password",
+              hintText: "masukan password anda",
               obscureText: true,
-              decoration: InputDecoration(
-                labelText: "Password",
-                hintText: "Masukkan password",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                prefixIcon: Icon(Icons.lock),
-              ),
+              prefixIcon: Icons.lock,
             ),
             SizedBox(height: 25),
-            ElevatedButton.icon(
-              onPressed: handleLogin,
-              icon: Icon(Icons.login),
-              label: Text("Login"),
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-                backgroundColor: Colors.blueAccent,
-                textStyle: TextStyle(fontSize: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
+
+            CoustumButton(text: "Login", onPressed: handleLogin),
+
             SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -125,7 +108,7 @@ class LoginPagetState extends State<LoginPage> {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

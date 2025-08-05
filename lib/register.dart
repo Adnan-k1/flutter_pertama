@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pertama/login.dart';
 import 'componets/input_field.dart';
+import 'componets/widget_button.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -72,7 +73,11 @@ class RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("register")),
+      appBar: AppBar(
+        title: Text("Login Page"),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -130,7 +135,7 @@ class RegisterState extends State<Register> {
               ),
             ),
             SizedBox(height: 15),
-            ElevatedButton(onPressed: _handleRegister, child: Text("daftar")),
+            CoustumButton(text: "Register", onPressed: _handleRegister,)
           ],
         ),
       ),
