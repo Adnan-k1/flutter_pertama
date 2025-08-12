@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pertama/componets/input_field.dart';
 import 'package:flutter_pertama/componets/widget_button.dart';
 import 'package:flutter_pertama/controller/kalkulatorcontroller.dart';
+import 'package:flutter_pertama/routers/routers.dart';
 import 'package:get/get.dart';
 
 class CalculatorPage extends StatelessWidget {
@@ -15,7 +16,7 @@ class CalculatorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Kalkulator Sederhana")),
-      body: SingleChildScrollView( // Agar tidak overflow saat keyboard muncul
+      body: SingleChildScrollView( 
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -83,9 +84,9 @@ class CalculatorPage extends StatelessWidget {
 
             SizedBox(height: 20),
             CoustumButton(
-              text: "Clear",
+              text: "move to footballplayer",
               onPressed: () {
-                kalkulatorController.clear();
+                Get.toNamed(Approters.footballplayer);
               },
             ),
           ],

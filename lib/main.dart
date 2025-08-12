@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pertama/login.dart';
 import 'package:flutter_pertama/pages/calculatorpage.dart';
+import 'package:flutter_pertama/routers/pages.dart';
+import 'package:flutter_pertama/routers/routers.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
 void main() {
@@ -19,7 +21,8 @@ class MyApp extends StatelessWidget {
       
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: CalculatorPage(),
+      initialRoute: Approters.Calculator,
+      getPages: AppPages.pages,
     );
   }
 }
