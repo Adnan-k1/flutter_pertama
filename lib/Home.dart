@@ -1,49 +1,50 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:flutter_pertama/kalkulator.dart';
+import 'package:get/get.dart';
+import 'package:flutter_pertama/pages/calculatorpage.dart';
+import 'package:flutter_pertama/pages/football_page.dart';
+import 'pages/profile_page.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
+
+
+
+class HomeController extends GetxController {
+  var currentIndex = 0.obs;
+
+  final pages = [
+    CalculatorPage(),
+    FootballPage(),
+    ProfilePage()
+  ];
 }
 
-class _HomePageState extends State<HomePage> {
-  void handlekalkulator() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const Kalkulator()),
-    );
-  }
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
+
+  final HomeController controller = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Login Page")),
-      body: Container(
-        margin: EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(child: Image.asset('asset/image/logo.jpg', width: 200)),
-            Center(
-              child: Text(
-                "Welcome to kalkulator",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.blueGrey,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+    return Obx(
+      () => Scaffold(
+        body: controller.pages[controller.currentIndex.value],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: controller.currentIndex.value,
+          onTap: (index) {
+            controller.currentIndex.value = index;
+          },
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.calculate),
+              label: "Kalkulator",
             ),
-            SizedBox(height: 20),
-            Center(
-              child: ElevatedButton(
-                onPressed: handlekalkulator,
-                child: Text("Pindah ke Kalkulator"),
-              ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.sports_soccer),
+              label: "Football",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Profile",
             ),
           ],
         ),

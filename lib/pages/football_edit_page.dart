@@ -3,8 +3,7 @@ import 'package:flutter_pertama/controller/football_controller.dart';
 import 'package:get/get.dart';
 
 class EditPlayerPage extends StatelessWidget {
-  final int index;
-  EditPlayerPage({super.key, required this.index});
+  EditPlayerPage({super.key});
 
   final FootballController footballController = Get.find();
 
@@ -15,6 +14,8 @@ class EditPlayerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int index = Get.arguments as int;
+
     final player = footballController.players[index];
     nameController.text = player.name;
     positionController.text = player.position;

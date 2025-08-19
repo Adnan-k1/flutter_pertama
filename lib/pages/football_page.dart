@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pertama/controller/football_controller.dart';
-import 'package:flutter_pertama/pages/football_edit_page.dart';
+import 'package:flutter_pertama/routers/routers.dart';
 import 'package:get/get.dart';
 
 class FootballPage extends StatelessWidget {
@@ -11,7 +11,7 @@ class FootballPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("My Football")),
+      appBar: AppBar(title: const Text("My Football")),
       body: Obx(
         () => ListView.builder(
           itemCount: footballController.players.length,
@@ -24,9 +24,13 @@ class FootballPage extends StatelessWidget {
               title: Text(player.name),
               subtitle: Text("${player.position} • #${player.number}"),
               trailing: IconButton(
-                icon: Icon(Icons.edit),
+                icon: const Icon(Icons.edit),
                 onPressed: () {
-                  Get.to(() => EditPlayerPage(index: index));
+                  
+                  Get.toNamed(
+                    Approters.footballedit, 
+                    arguments: index,
+                  );
                 },
               ),
             );
