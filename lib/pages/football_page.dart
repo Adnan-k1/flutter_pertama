@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_pertama/controller/football_controller.dart';
 import 'package:flutter_pertama/routers/routers.dart';
-import 'package:get/get.dart';
 
 class FootballPage extends StatelessWidget {
-  FootballPage({super.key});
-
   final FootballController footballController = Get.put(FootballController());
+
+  FootballPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,8 @@ class FootballPage extends StatelessWidget {
               trailing: IconButton(
                 icon: const Icon(Icons.edit),
                 onPressed: () {
-                  
                   Get.toNamed(
-                    Approters.footballedit, 
+                    Approters.footballedit,
                     arguments: index,
                   );
                 },

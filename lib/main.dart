@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pertama/login.dart';
+import 'package:flutter_pertama/routers/pages.dart';
 import 'package:get/get.dart';
-import 'package:flutter_pertama/routers/routers.dart';
-import 'home.dart';
+import 'package:flutter_pertama/login.dart';
+import 'package:flutter_pertama/routers/routers.dart'; // Import your AppPages class
 
 void main() {
   runApp(const MyApp());
@@ -16,11 +16,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Bottom Nav Example',
-      initialRoute: '/',
-      getPages: [
-        GetPage(name: '/', page: () => LoginPage()),
-        
-      ],
+      initialRoute: Approters.login, 
+      getPages: AppPages.routes,
     );
   }
 }
