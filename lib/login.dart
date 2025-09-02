@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pertama/home.dart';
-import 'package:flutter_pertama/register.dart';
-import 'componets/widget_button.dart';
-import 'componets/input_field.dart';
 import 'package:get/get.dart';
+import 'package:flutter_pertama/routers/routers.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -29,8 +26,7 @@ class LoginPageState extends State<LoginPage> {
       );
 
       Future.delayed(const Duration(seconds: 1), () {
-        
-        Get.off(() => HomePage());
+        Get.offAllNamed(Approters.mainmenu); // ✅ arahkan ke Main Menu (Drawer)
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -45,79 +41,83 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("Login Page"),
-        centerTitle: true,
-        backgroundColor: Colors.blueAccent,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            Image.asset('asset/image/logo.jpg', width: 150),
-            const SizedBox(height: 20),
-            Text(
-              "Welcome Back!",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey[800],
-              ),
+      backgroundColor: Colors.blue.shade50,
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Card(
+            elevation: 8,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
             ),
-            const SizedBox(height: 5),
-            Text(
-              "Masukkan email dan password Anda",
-              style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-            ),
-            const SizedBox(height: 25),
-
-            InputField(
-              controller: emailController,
-              label: "Email",
-              hintText: "Masukkan email",
-              prefixIcon: Icons.email,
-            ),
-
-            const SizedBox(height: 15),
-
-            InputField(
-              controller: passwordController,
-              label: "Password",
-              hintText: "Masukkan password Anda",
-              obscureText: true,
-              prefixIcon: Icons.lock,
-            ),
-
-            const SizedBox(height: 25),
-
-            CoustumButton(text: "Login", onPressed: handleLogin),
-
-            const SizedBox(height: 30),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Belum punya akun? "),
-                GestureDetector(
-                  onTap: () {
-                    Get.to(() => const Register());
-                  },
-                  child: const Text(
-                    "Daftar di sini",
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.lock, size: 80, color: Colors.blue),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Welcome Back",
                     style: TextStyle(
-                      color: Colors.blueAccent,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
+                      color: Colors.blue,
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 24),
+                  TextField(
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      labelText: "Email",
+                      prefixIcon: const Icon(Icons.email),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: "Password",
+                      prefixIcon: const Icon(Icons.lock),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: handleLogin,
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        backgroundColor: Colors.blue,
+                      ),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text("Forgot Password?"),
+                  ),
+                ],
+              ),
             ),
-          ],
+          ),
         ),
       ),
     );
   }
 }
+  

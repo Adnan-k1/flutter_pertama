@@ -1,6 +1,8 @@
 class Approters {
-  static const String Calculator = "/calculator";
-  static const String footballplayer = "/footballplayer";
-  static const String footballedit = "/footballplayer/edit";
   static const login = '/login';
+  static const mainmenu = '/mainmenu';
+  static const calculator = '/calculator';
+  static const footballplayer = '/football';
+  static const footballedit = '/football/edit';
+  static const profile = '/profile';
 }
