@@ -56,7 +56,7 @@ class MainMenuPage extends StatelessWidget {
                 selectedTileColor: Colors.blue.withOpacity(0.1),
                 onTap: () {
                   mainController.changePage(0);
-                  Get.back();
+                  Get.back(); // tutup drawer
                 },
               ),
             ),

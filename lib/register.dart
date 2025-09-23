@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pertama/login.dart';
+import 'package:flutter_pertama/pages/login_page.dart';
 import 'componets/input_field.dart';
 import 'componets/widget_button.dart';
 
@@ -20,7 +20,7 @@ class RegisterState extends State<Register> {
   void handlelogin() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const LoginPage()),
+      MaterialPageRoute(builder: (context) =>  LoginPage()),
     );
   }
 
