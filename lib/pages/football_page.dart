@@ -4,7 +4,7 @@ import 'package:flutter_pertama/controller/football_controller.dart';
 import 'package:flutter_pertama/routers/routers.dart';
 
 class FootballPage extends StatelessWidget {
-  final FootballController footballController = Get.put(FootballController());
+  final footballController = Get.find<FootballController>();
 
   FootballPage({super.key});
 

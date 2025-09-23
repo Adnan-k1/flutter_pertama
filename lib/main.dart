@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Drawer Navigation Example',
-      initialRoute: Approters.login,
+      initialRoute: Approters.splashscreen,
       getPages: AppPages.routes,
     );
   }

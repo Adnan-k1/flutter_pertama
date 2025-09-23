@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pertama/login.dart';
+import 'package:flutter_pertama/pages/login_page.dart';
 import 'package:get/get.dart';
-import 'package:flutter_pertama/login.dart';
-
+import 'package:flutter_pertama/pages/login_page.dart';
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -35,7 +34,7 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                Get.offAll(() => const LoginPage()); 
+                Get.offAll(() =>  LoginPage()); 
               },
               child: const Text("Logout"),
             ),
