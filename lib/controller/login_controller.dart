@@ -9,14 +9,19 @@ class LoginController extends GetxController{
   TextEditingController passwordController = TextEditingController();
   
   login() async {
-    if(usernameController.text.toString() == "admIn" || passwordController.text.toString() == "admln"){
+    
+    if(usernameController.text.toString() == "admin" && passwordController.text.toString() == "1234"){
       final prefs = await SharedPreferences.getInstance();
-      // FIX: The key 'username' was misspelled as 'ysername'.
+      
       prefs.setString("username", usernameController.text.toString());
+
+      await prefs.setString("username", usernameController.text);
+      await prefs.setBool("isLoggedIn", true);
+      
       Get.offAllNamed(Approters.mainmenu);
     }else{
-      // FIX: The word 'incorrect' was misspelled.
-      Get.snackbar("error", "incorrect username and password");
+      
+      Get.snackbar("Error", "Username atau password salah!");
     }
   }
 }

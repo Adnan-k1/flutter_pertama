@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pertama/pages/login_page.dart';
 import 'package:get/get.dart';
-import 'package:flutter_pertama/pages/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_pertama/routers/routers.dart';
+import 'package:flutter_pertama/controller/profil_controller.dart';
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
+
   @override
   Widget build(BuildContext context) {
+    final ProfileController controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile User"),
@@ -17,7 +21,7 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 60,
               backgroundImage: AssetImage("asset/image/image.png"),
             ),
@@ -33,9 +37,7 @@ class ProfilePage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             ElevatedButton(
-              onPressed: () {
-                Get.offAll(() =>  LoginPage()); 
-              },
+              onPressed: controller.logout,
               child: const Text("Logout"),
             ),
           ],

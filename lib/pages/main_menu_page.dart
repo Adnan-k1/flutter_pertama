@@ -1,22 +1,28 @@
+// lib/pages/main_menu_page.dart
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_pertama/controller/main_menu_controller.dart';
 import 'package:flutter_pertama/pages/calculatorpage.dart';
 import 'package:flutter_pertama/pages/football_page.dart';
 import 'package:flutter_pertama/pages/profile_page.dart';
+import 'package:flutter_pertama/pages/contact_page.dart';
 
 class MainMenuPage extends StatelessWidget {
   MainMenuPage({super.key});
 
-  final MainPageController mainController = Get.put(MainPageController());
+  final MainPageController mainController = Get.find<MainPageController>();
+  // FootballController sudah terdaftar di MainMenuBinding, jadi bisa langsung digunakan
+  // final FootballController footballController = Get.find<FootballController>();
 
   final List<Widget> pages = [
     CalculatorPage(),
     FootballPage(),
     ProfilePage(),
+    ContactPage(),
   ];
 
-  final List<String> titles = const ["Kalkulator", "Football", "Profile"];
+  final List<String> titles = const ["Kalkulator", "Football", "Profile", "Contact"];
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +63,18 @@ class MainMenuPage extends StatelessWidget {
                 onTap: () {
                   mainController.changePage(0);
                   Get.back(); // tutup drawer
+                },
+              ),
+            ),
+            Obx(
+              () => ListTile(
+                leading: const Icon(Icons.contact_page),
+                title: const Text("Contact"),
+                selected: mainController.selectedIndex.value == 0,
+                selectedTileColor: Colors.blue.withOpacity(0.1),
+                onTap: () {
+                  mainController.changePage(3);
+                  Get.back(); 
                 },
               ),
             ),

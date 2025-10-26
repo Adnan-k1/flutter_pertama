@@ -15,9 +15,9 @@ class SplashscreenController extends GetxController{
     final savedusername =prefs.getString("username");
         await Future.delayed( Duration(seconds: 3));
     if(savedusername != null){
-      Get.offAllNamed(Approters.login);
+      Get.offAllNamed(Approters.mainmenu);
     }else{
-      Get.offAllNamed(Approters.profile);
+      Get.offAllNamed(Approters.login);
     }
 
   }

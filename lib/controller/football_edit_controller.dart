@@ -1,41 +1,58 @@
-import 'package:flutter/material.dart';
+// football_edit_controller.dart
 import 'package:get/get.dart';
-import 'football_controller.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_pertama/controller/football_controller.dart';
 
 class FootballEditController extends GetxController {
-  final FootballController footballController = Get.find();
+  late int playerIndex;
 
-  late int index;
-  var player = Rxn<Players>();
+  
+  var player = Rx<Players?>(null);
 
+  
   final imageController = TextEditingController();
   final nameController = TextEditingController();
   final positionController = TextEditingController();
   final numberController = TextEditingController();
 
+  
+  final FootballController footballController = Get.find<FootballController>();
+
   @override
   void onInit() {
     super.onInit();
-    index = Get.arguments ?? 0;
-    player.value = footballController.players[index];
+   
+    playerIndex = Get.arguments as int; 
+    
+    
+    player.value = footballController.players[playerIndex];
 
-    if (player.value != null) {
-      imageController.text = player.value!.profileImage;
-      nameController.text = player.value!.name;
-      positionController.text = player.value!.position;
-      numberController.text = player.value!.number.toString();
-    }
+    
+    imageController.text = player.value!.profileImage;
+    nameController.text = player.value!.name;
+    positionController.text = player.value!.position;
+    numberController.text = player.value!.number.toString();
   }
 
   void saveEdit() {
-    final updatedPlayer = Players(
-      profileImage: imageController.text,
-      name: nameController.text,
-      position: positionController.text,
-      number: int.tryParse(numberController.text) ?? 0,
-    );
+    if (player.value != null) {
+      final updatedPlayer = Players(
+        profileImage: imageController.text,
+        name: nameController.text,
+        position: positionController.text,
+        number: int.tryParse(numberController.text) ?? 0,
+      );
+      // Gunakan indeks untuk memperbarui pemain yang benar
+      footballController.editPlayer(playerIndex, updatedPlayer);
+    }
+  }
 
-    footballController.editPlayer(index, updatedPlayer);
+  @override
+  void onClose() {
+    imageController.dispose();
+    nameController.dispose();
+    positionController.dispose();
+    numberController.dispose();
+    super.onClose();
   }
 }

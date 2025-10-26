@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_pertama/controller/football_edit_controller.dart';
 
-class EditPlayerPage extends StatelessWidget {
+class EditPlayerPage extends StatelessWidget { 
   const EditPlayerPage({super.key});
 
   @override
