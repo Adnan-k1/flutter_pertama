@@ -30,11 +30,7 @@ class AppPages {
       page: () => SplashscreenPage(),
       binding: SplashscreenBinding(),
     ),
-    GetPage(
-      name: Approters.login,
-      page: () => LoginPage(),
-      binding: LoginBinding(),
-    ),
+    
     GetPage(
       name: Approters.mainmenu,
       page: () => MainMenuPage(),

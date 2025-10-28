@@ -1,3 +1,3 @@
 class ClientNetwork {
-  static const String baseUrl = "https://mediadwi.com/api/latihan";
+  static const String baseUrl = "http://mediadwi.com/api/latihan";
 }

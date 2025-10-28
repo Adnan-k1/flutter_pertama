@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pertama/controller/login_api_controller.dart';
 import 'package:get/get.dart';
 import '../controller/login_api_controller.dart';
 
@@ -11,7 +10,7 @@ class LoginApiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Login")),
+      appBar: AppBar(title: const Text("Login API")),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(

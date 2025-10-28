@@ -1,24 +1,29 @@
-import 'package:flutter_pertama/routers/routers.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../routers/routers.dart';
 
-class SplashscreenController extends GetxController{
+class SplashscreenController extends GetxController {
   @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    checklogin();
+  void onReady() {
+    super.onReady();
+    checkLogin();
   }
 
-  checklogin()async{
-    final prefs = await SharedPreferences.getInstance();
-    final savedusername =prefs.getString("username");
-        await Future.delayed( Duration(seconds: 3));
-    if(savedusername != null){
-      Get.offAllNamed(Approters.mainmenu);
-    }else{
-      Get.offAllNamed(Approters.login);
-    }
+  Future<void> checkLogin() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
+      final token = prefs.getString("token") ?? "";
 
+      await Future.delayed(const Duration(seconds: 2));
+
+      if (isLoggedIn && token.isNotEmpty) {
+        Get.offAllNamed(Approters.mainmenu);
+      } else {
+        Get.offAllNamed(Approters.loginapi);
+      }
+    } catch (e) {
+      Get.offAllNamed(Approters.loginapi);
+    }
   }
 }

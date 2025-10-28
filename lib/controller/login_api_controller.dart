@@ -1,23 +1,24 @@
 import 'package:get/get.dart';
-import '../network/api_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../routers/routers.dart';
 import '../model/login_model.dart';
-
+import '../network/api_service.dart';
 
 class LoginApiController extends GetxController {
-   var isLoading = false.obs;
+  var isLoading = false.obs;
   var message = ''.obs;
 
   Future<void> login(String username, String password) async {
+    isLoading.value = true;
     try {
-      isLoading.value = true;
-
       LoginModel response = await ApiService.login(username, password);
-
       if (response.status) {
-        message.value = "Login berhasil: ${response.message}";
-        print("Token: ${response.token}");
-        // Navigasi ke halaman utama, misal:
-        // Get.offAllNamed('/home');
+        final prefs = await SharedPreferences.getInstance();
+        
+        await prefs.setBool("isLoggedIn", true);
+        await prefs.setString("token", response.token ?? "");
+
+        Get.offAllNamed(Approters.mainmenu);
       } else {
         message.value = "Login gagal: ${response.message}";
       }
